@@ -1,0 +1,21 @@
+concurrent = 1
+log_level = "warn"
+log_format = "json"
+check_interval = 10
+connection_max_age = "15m0s"
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "{{ ansible_hostname }}"
+  url = "{{ gitlab_server_url }}"
+  id = 1
+  token = "{{ gitlab_token }}"
+  executor = "{{ gitlab_runner_executor }}"
+  [runners.cache]
+    MaxUploadedArchiveSize = 0
+    [runners.cache.s3]
+    [runners.cache.gcs]
+    [runners.cache.azure]

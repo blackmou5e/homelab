@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: gitlab-runner-ubuntu
+    image: ubuntu:22.04
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: prepare.yml
+  inventory:
+    host_vars:
+      gitlab-runner-ubuntu:
+        gitlab_runner_registration_token: "MOCK_TOKEN"
+verifier:
+  name: testinfra

@@ -1,0 +1,9 @@
+[all]
+%{ for runner in runners ~}
+${runner.ip} ansible_user=ubuntu gitlab_token="${runner.token}"
+%{ endfor ~}
+
+[all:vars]
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+gitlab_server_url="${url}"
+gitlab_runner_executor="${executor}"

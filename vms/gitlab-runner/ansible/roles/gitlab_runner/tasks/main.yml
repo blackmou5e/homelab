@@ -1,0 +1,30 @@
+---
+- name: Install required dependencies
+  apt:
+    name:
+      - curl
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+    state: present
+    update_cache: yes
+
+- name: Add GitLab Runner repo gpg key
+  shell: curl -fsSL "https://packages.gitlab.com/runner/gitlab-runner/gpgkey" | gpg --dearmor > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
+  changed_when: false
+
+- name: Add GitLab runner repo
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/runner/gitlab-runner/config_file.list?os=ubuntu&dist=jammy&source=script
+    dest: /etc/apt/sources.list.d/runner_gitlab-runner.list
+
+- name: Install gitlab-runner package
+  apt:
+    name: gitlab-runner
+    state: present
+    update_cache: yes
+
+- name: Configure gitlab runner via template
+  template:
+    src: runner_config_template.j2
+    dest: /etc/gitlab-runner/config.toml

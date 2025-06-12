@@ -50,3 +50,6 @@ terraform.rc
 
 # Virtual environments
 **/.venv
+
+# Ansible inventory files (because they are dynamic)
+**/inventory.ini
