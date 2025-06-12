@@ -1,0 +1,68 @@
+---
+gitlab_server_external_url: http://192.168.31.3/
+
+# smtp settings
+gitlab_server_smtp_enabled: "false"
+gitlab_server_smtp_server: test
+gitlab_server_smtp_port: 465
+gitlab_server_smtp_username: gitlab_mailer
+gitlab_server_smtp_password: securepassword
+gitlab_server_smtp_domain: example.com
+gitlab_server_smtp_auth_method: login
+gitlab_server_smtp_starttls_auto: true
+gitlab_server_smtp_tls: false
+gitlab_server_smtp_pool: false
+
+# User privileges
+gitlab_server_username_changing_enabled: "false"
+
+# Theming settings
+### Default Theme
+###! Available values:
+###! `1`  for Indigo
+###! `2`  for Dark
+###! `3`  for Light
+###! `4`  for Blue
+###! `5`  for Green
+###! `6`  for Light Indigo
+###! `7`  for Light Blue
+###! `8`  for Light Green
+###! `9`  for Red
+###! `10` for Light Red
+gitlab_server_default_theme: 2
+
+### Available values:
+##! `1`  for Light mode
+##! `2`  for Dark mode
+##! `3`  for Auto (follow system preferences)
+gitlab_server_color_mode: 3
+
+# Default project features
+gitlab_server_projects_feature_issues: "false"
+gitlab_server_projects_feature_merge_requests: "true"
+gitlab_server_projects_feature_wiki: "false"
+gitlab_server_projects_feature_snippets: "false"
+gitlab_server_projects_feature_builds: "true"
+gitlab_server_projects_feature_container_registry: "true"
+
+# Auto issue closing
+gitlab_server_issue_closing_pattern: \b((?:[Cc]los(?:e[sd]?|ing)|\b[Ff]ix(?:e[sd]|ing)?|\b[Rr]esolv(?:e[sd]?|ing)|\b[Ii]mplement(?:s|ed|ing)?)(:?) +(?:(?:issues? +)?%{issue_ref}(?:(?:, *| +and +)?)|([A-Z][A-Z0-9_]+-\d+))+)
+
+# Artifacts storage config
+gitlab_server_artifacts_enabled: "true"
+gitlab_server_artifacts_path: /var/opt/gitlab/gitlab-rails/shared/artifacts
+
+# Git LFS storage config
+gitlab_server_lfs_enabled: "true"
+gitlab_server_lfs_path: /var/opt/gitlab/gitlab-rails/shared/lfs-objects
+
+# Backup settings
+gitlab_server_manage_backup_path: "true"
+gitlab_server_backup_path: /var/opt/gitlab/backups
+gitlab_server_gitaly_backup_path: /opt/gitlab/embedded/bin/gitaly-backup
+gitlab_server_backup_pg_schema: public
+gitlab_server_backup_keep_time: 604800
+
+
+# Disable telemetry (or try to do it at least)
+gitlab_server_usage_ping_enabled: "false"

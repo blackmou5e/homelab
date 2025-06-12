@@ -1,0 +1,35 @@
+---
+- name: Install required dependencies
+  apt:
+    name:
+      - curl
+      - apt-transport-https
+      - ca-certificates
+      - gnupg
+      - postfix
+    state: present
+    update_cache: yes
+
+- name: Add GitLab Server repo gpg key
+  shell: curl -fsSL "https://packages.gitlab.com/gitlab/gitlab-ce/gpgkey" | gpg --dearmor > /usr/share/keyrings/gitlab_gitlab-ce-archive-keyring.gpg
+  changed_when: false
+
+- name: Add GitLab Server repo
+  get_url:
+    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/config_file.list?os=ubuntu&dist=jammy&source=script
+    dest: /etc/apt/sources.list.d/gitlab_gitlab-ce.list
+  changed_when: false
+
+- name: Install gitlab-ce package
+  apt:
+    name: gitlab-ce
+    state: present
+    update_cache: yes
+
+- name: Apply gitlab.rb template
+  template:
+    src: gitlab_rb_template.j2
+    dest: /etc/gitlab/gitlab.rb
+
+- name: Reconfigure GitLab Server
+  shell: gitlab-ctl reconfigure

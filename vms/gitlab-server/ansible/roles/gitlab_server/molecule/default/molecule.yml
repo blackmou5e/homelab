@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: gitlab-server-ubuntu
+    image: ubuntu:22.04
+    pre_build_image: true
+provisioner:
+  name: ansible
+  playbooks:
+    prepare: prepare.yml
+  inventory:
+    host_vars:
+      gitlab-server-ubuntu:
+        test: "test"
+verifier:
+  name: testinfra
