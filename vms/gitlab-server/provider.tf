@@ -11,30 +11,12 @@ terraform {
   }
 }
 
-variable "proxmox_endpoint" {
-  description = "The proxmox API endpoint"
-  type        = string
-  sensitive   = true
-}
-
-variable "username" {
-  description = "The proxmox API username"
-  type        = string
-  sensitive   = true
-}
-
-variable "api_token" {
-  description = "The proxmox API token"
-  type        = string
-  sensitive   = true
-}
-
 provider "proxmox" {
   endpoint  = var.proxmox_endpoint
-  api_token = var.api_token
+  api_token = var.proxmox_api_token
   insecure  = true
   ssh {
     agent    = true
-    username = var.username
+    username = var.proxmox_username
   }
 }

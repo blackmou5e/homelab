@@ -87,7 +87,7 @@ resource "proxmox_virtual_environment_vm" "gitlab_server" {
 }
 
 resource "local_file" "ansible_inventory" {
-  content = templatefile("${path.module}/ansible_inventory.tftpl", {
+  content = templatefile("${path.module}/ansible_inventory.tmpl", {
     address = proxmox_virtual_environment_vm.gitlab_server.ipv4_addresses[1][0]
   })
   filename = "${path.module}/ansible/inventory.ini"
