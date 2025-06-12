@@ -1,3 +1,0 @@
-plugin: cloud.terraform.terraform_provider
-project_path: /home/blackmou5e/projects/homelab/gitlab-runners/
-binary_path: /usr/bin/tofu
