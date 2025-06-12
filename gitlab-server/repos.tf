@@ -5,9 +5,13 @@ resource "gitlab_project" "gitlab_terraform" {
   visibility_level                                 = "internal"
   description                                      = "Repo for storing user and groups terraform state"
   initialize_with_readme                           = false
+
+  // Some basic sense
   allow_merge_on_skipped_pipeline                  = false
   only_allow_merge_if_all_discussions_are_resolved = true
   only_allow_merge_if_pipeline_succeeds            = true
+  
+  // Manual chores are bad, and making Jack not happy
   remove_source_branch_after_merge                 = true
   squash_option                                    = "default_on"
   archive_on_destroy                               = true
@@ -19,6 +23,8 @@ resource "gitlab_project" "gitlab_terraform" {
   default_branch                                   = "main"
   emails_enabled                                   = false
   lfs_enabled                                      = false
+
+  //don't even ask, we simply ignoring all of this features
   merge_requests_access_level                      = "enabled"
   analytics_access_level                           = "disabled"
   builds_access_level                              = "disabled"
