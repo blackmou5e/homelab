@@ -1,7 +1,7 @@
 # Basic homelab/SOHO terraform+ansible recipes
 
 ### DONE
-- [ ] gitlab-runners
+- [x] gitlab-runners
 
 ### Partially done
 - [ ] gitlab-server (configuration options not extensively templated)
