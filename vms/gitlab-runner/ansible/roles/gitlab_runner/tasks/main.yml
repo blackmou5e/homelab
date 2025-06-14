@@ -7,7 +7,7 @@
       - ca-certificates
       - gnupg
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Add GitLab Runner repo gpg key
   shell: curl -fsSL "https://packages.gitlab.com/runner/gitlab-runner/gpgkey" | gpg --dearmor > /usr/share/keyrings/runner_gitlab-runner-archive-keyring.gpg
@@ -22,7 +22,7 @@
   apt:
     name: gitlab-runner
     state: present
-    update_cache: yes
+    update_cache: true
 
 - name: Configure gitlab runner via template
   template:
